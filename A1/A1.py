@@ -13,8 +13,6 @@ def train_model(model, X, y):
 	hyperparams = dict(C=C, penalty=penalty)
 	clf = GridSearchCV(model, hyperparams, cv=5, verbose=0)
 	best_model = clf.fit(X, y)
-	print('Best Penalty:', best_model.best_estimator_.get_params()['penalty'])
-	print('Best C:', best_model.best_estimator_.get_params()['C'])
 	return best_model.score(X,y), best_model
 
 # Test the model and retrieve the accuracy 
