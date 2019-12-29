@@ -59,7 +59,6 @@ def prep_data(images):
     for i, image_file in enumerate(images):
         image = read_image(image_file)
         data[i] = image.T
-        if i%500 == 0: print('Processed {} of {}'.format(i, count))
     
     return data
     
@@ -77,11 +76,7 @@ def create_dataset(labels, dataset, path, train_data, test_data, data_min):
     	y_test = get_labels(test_data.iloc[:,1].values.tolist())
     	return X_train, y_train, X_test, y_test
     X_train, y_train = create_train_set(train_image_name, labels, train_data, data_min)
-    print(X_train.shape)
-    print(len(y_train))
     X_test, y_test = create_test_set(test_image_name, labels, test_data, data_min)
-    print(X_test.shape)
-    print(len(y_test))
     return X_train, y_train, X_test, y_test
 
 # Function to get the binary classification data used in tasks A1 and A2
@@ -169,20 +164,5 @@ def get_data():
     train_face_data, test_face_data, data_min = get_multiclass_data('face_shape', face_labels)
     eye_X_train, eye_y_train, eye_X_test, eye_y_test = create_dataset(eye_labels, 'cartoon_set', path, train_eye_data, test_eye_data, data_min)
     face_X_train, face_y_train, face_X_test, face_y_test = create_dataset(face_labels, 'cartoon_set', path, train_face_data, test_face_data, data_min)
-    gender_X_train = '1'
-    gender_y_train  = '1'
-    gender_X_test = '1'
-    gender_y_test = '1'
-    eye_X_train = '1'
-    eye_y_train = '1' 
-    eye_X_test = '1'
-    eye_y_test = '1'
-    smile_X_train  = '1'
-    smile_y_train  = '1'
-    smile_X_test  = '1'
-    smile_y_test = '1'
-    face_X_train  = '1'
-    face_y_train  = '1'
-    face_X_test  = '1'
-    face_y_test = '1'
+
     return smile_X_train, smile_y_train, smile_X_test, smile_y_test, gender_X_train, gender_y_train, gender_X_test, gender_y_test, eye_X_train, eye_y_train, eye_X_test, eye_y_test, face_X_train, face_y_train, face_X_test, face_y_test
